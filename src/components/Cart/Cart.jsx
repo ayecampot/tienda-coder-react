@@ -27,30 +27,3 @@ export const Cart = () => {
    
 }
 
-/*
-    Condicional 1 = 6 complejidad, 2 return y 1 condicional
-    if(false) {
-        return <p>Es verdadero</p>;
-    } 
-    return <p>Es falso</p>;
-
-    -----------------
-    Condicional 2 = 6 complejidad, 1 return y 2 condicionales
-    const condLogica = false
-    return(
-        <>
-        {condLogica && <p>Es verdadero</p>  }
-        {!condLogica && <p>Es falso</p>  }
-        </>
-
-    )
-    ------------
-    Condicional 3 = 5 complejidad, 1 return y 1 condicional
-    const condLogica = false
-    return(
-        <>
-            {condLogica ? <p>Es verdadero</p> : <p>Es falso</p>}
-        </>
-    )
-
-*/

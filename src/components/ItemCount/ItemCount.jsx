@@ -1,10 +1,14 @@
 import { useState } from "react"
+import { Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
+
+
+
 export const ItemCount = ({valInicial, stock, onAdd}) => {
-    
+
     const [contador, setContador] = useState(valInicial)
             //Var       //Modificar var     //Estado inicial
-
+  
     const sumar = () =>  (contador < stock) && setContador(contador + 1) //contador = contador + 1
     const restar = () => (contador > valInicial)  && setContador(contador - 1)  //Operador ternario sin else
     const agregarCarrito = () => {
@@ -14,11 +18,14 @@ export const ItemCount = ({valInicial, stock, onAdd}) => {
 
   return (
     <>
-        <button className="btn btn-success mx-1 mb-2" onClick={() => restar()}>-</button>
+ 
+        <button className="btn btn-secondary mx-1 mb-2" onClick={() => restar()}>-</button>
           {contador}
-        <button className="btn btn-success mx-1 mb-2" onClick={() => sumar()}>+</button>
-        <button className="btn btn-success mx-1 mb-2" onClick={() => agregarCarrito()}>Agregar al carrito</button>
-        <a className="nav-link" href={'/'}><button className="btn btn-secondary">Continuar Comprando</button></a> 
+        <button className="btn btn-secondary mx-1 mb-2" onClick={() => sumar()}>+</button>
+        <button className="btn btn-secondary mx-1 mb-2" onClick={() => agregarCarrito()}>Agregar al carrito</button>
+        <Link className="nav-link" to={'/'}><button className="btn btn-success">Seguir comprando</button></Link> 
+
+        
     </>
   )
 }
