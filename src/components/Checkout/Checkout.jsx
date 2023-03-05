@@ -4,38 +4,38 @@ import  React  from "react"
 import { useNavigate } from "react-router-dom"
 import {toast} from 'react-toastify'
 import { useState } from "react"
-import { createOrdenCompra, getOrdenCompra, getProducto, updateProducto } from "../../firebase/firebase"
+import { createOrdenCompra, getProducto, updateProducto } from "../../firebase/firebase"
 
 export const Checkout = () => {
-    const {carrito, emptyCart, totalPrice} = useCarritoContext()
+    const { carrito, totalPrice, emptyCart } = useCarritoContext()
     const datosFormulario = React.useRef()
+    let navigate = useNavigate()
     const [ Email, setEmail ] = useState("")                       
     const [ repEmail, setRepEmail ] = useState("") 
-    const [ errorEmail, setErrorEmail ] = useState(true) 
-    let navigate = useNavigate()
-
+    const [ errorEmail, setErrorEmail ] = useState(true)     
     const consultarFormulario = (e) => {
         e.preventDefault()
-        const datForm = new FormData(datosFormulario.current)
-        const cliente = Object.fromEntries(datForm)
         
-        const aux = [...carrito]
 
-        aux.forEach(prodCarrito => {
-            getProducto(prodCarrito.id).then(prodBDD => {
-                prodBDD.stock -= prodCarrito.cant //Descuento del stock la cantidad comprada
-                updateProducto(prodCarrito.id, prodBDD)
+        if (errorEmail === true) {
+            const datForm = new FormData(datosFormulario.current)
+            const cliente = Object.fromEntries(datForm)
+            const aux = [...carrito]
+
+            aux.forEach(prodCarrito => {
+                getProducto(prodCarrito.id).then(prodBDD => { // a través del id del producto en carrito estoy consultando el producto en la BDD
+                    prodBDD.stock -= prodCarrito.cant // descuenta del stock de la cantidad comprada
+                    updateProducto(prodCarrito.id, prodBDD)
+                })
             })
-        })
 
-        createOrdenCompra(cliente, aux, totalPrice(), new Date().toISOString()).then(ordenCompra =>{
-            toast.success(`¡Muchas gracias por comprar con nosotros!, su orden de compra con el ID: ${ordenCompra.id
-            } por un total de $ ${new Intl.NumberFormat('de-DE').format(totalPrice())} fue realizada con exito`)
-            emptyCart()
-            e.target.reset()
-            navigate("/")
-        })
-
+            createOrdenCompra(cliente, aux, totalPrice(), new Date().toISOString()).then(ordenCompra => {
+                toast.success(` ⭐ ¡Tu compra fue realizada con éxito! ⭐ Se generó el ticket de compra con ID: ${ordenCompra.id}`)
+                emptyCart()
+                e.target.reset()
+                navigate("/")
+            })
+        }
     }
 
 
@@ -52,11 +52,11 @@ export const Checkout = () => {
             <form onSubmit={consultarFormulario} ref={datosFormulario}>
                 <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Nombre y apellido</label>
-                <input type="text" placeholder="Ayelen Campot" className="form-control" name="nombre" pattern="^[a-zA-Z]+" minlength="3" maxlength="20" required autocomplete="off"/>
+                <input type="text" placeholder="Ayelen Campot" className="form-control" name="nombre" required autocomplete="off"/>
             </div>
             <div className="mb-3 col-12">
                                     <label htmlFor="email" className="form-label">Email</label>
-                                    <input type="email" placeholder="ayecampot@gmail.com" className="form-control" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" autocomplete="off" onChange={(e)=> {                    
+                                    <input type="email" placeholder="marialopez@gmail.com" className="form-control" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" autocomplete="off" onChange={(e)=> {                    
                                         setEmail(e.target.value)
                                         if (e.target.value === repEmail){
                                             setErrorEmail(true)
@@ -68,7 +68,7 @@ export const Checkout = () => {
                                 </div>
                                 <div className="mb-3 col-12">
                                     <label htmlFor="repEmail" className="form-label">Repetir Email</label>
-                                    <input type="email" placeholder="ayecampot@gmail.com" className="form-control" name="repEmail" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" onChange={(e)=>{  
+                                    <input type="email" placeholder="Repetilo de nuevo por favor" className="form-control" name="repEmail" autocomplete="off" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" onChange={(e)=>{  
                                         setRepEmail(e.target.value)   
                                         if (e.target.value === Email){
                                             setErrorEmail(true)
@@ -77,7 +77,7 @@ export const Checkout = () => {
                                             setErrorEmail(false)
                                         }               
                                     }}/>
-                                    <p style={{display: errorEmail === false? 'block' : 'none'}} className="errorEmails">*Los emails ingresados deben ser iguales</p>
+                                    <p style={{display: errorEmail === false? 'block' : 'none'}} className="text-secondary">* Los emails ingresados deben ser iguales</p>
                                 </div>
             <div className="mb-3">
                 <label htmlFor="celular" className="form-label">Numero telefonico</label>
