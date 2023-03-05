@@ -2,10 +2,11 @@
 # Acerca del proyecto
 En este repositorio encontraras mi proyecto final realizado en el curso de React que curse en CoderHouse en principio del 2023, el mismo es un e-commerce con sus funciones básicas.
 
-# Levantar el proyecto
+## Si queres clonar el proyecto y levantarlo de forma local hay que tener en cuenta los siguientes requerimientos:
 
 # Requerimientos
-Para poder correrlo de forma local es necesario instalar las dependencias que figuran en el package.json
+tener instalado Node.js e tu pc
+Luego para poder correrlo de forma local es necesario instalar las dependencias que figuran en el package.json
 
 ### `npm install`
 
