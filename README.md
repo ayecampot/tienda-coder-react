@@ -2,7 +2,7 @@
 # Acerca del proyecto
 En este repositorio encontraras mi proyecto final realizado en el curso de React que curse en CoderHouse en principio del 2023, el mismo es un e-commerce con sus funciones básicas.
 
-## Levantar el proyecto
+# Levantar el proyecto
 
 # Requerimientos
 Para poder correrlo de forma local es necesario instalar las dependencias que figuran en el package.json
