@@ -1,9 +1,9 @@
 import { ItemListContainer } from "../ItemListContainer/ItemListContainer"
 import Hero from "../Hero/Hero"
-const Home = ({personalizar}) => {
+const Home = () => {
     return (
         <>
-            <Hero mensaje={personalizar}/>
+            <Hero/>
             <ItemListContainer/>
         </>
     )
