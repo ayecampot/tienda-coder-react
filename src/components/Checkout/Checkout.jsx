@@ -23,8 +23,8 @@ export const Checkout = () => {
             const aux = [...carrito]
 
             aux.forEach(prodCarrito => {
-                getProducto(prodCarrito.id).then(prodBDD => { // a través del id del producto en carrito estoy consultando el producto en la BDD
-                    prodBDD.stock -= prodCarrito.cant // descuenta del stock de la cantidad comprada
+                getProducto(prodCarrito.id).then(prodBDD => { 
+                    prodBDD.stock -= prodCarrito.cant 
                     updateProducto(prodCarrito.id, prodBDD)
                 })
             })

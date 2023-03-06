@@ -26,14 +26,13 @@ export const ItemListContainer = () => {
             getProductos()
             .then(items => {
                 const products = items.filter(prod => prod.stock > 0)
-                const productsList = <ItemList products={products} plantilla={'item'}/> //Array de productos en JSX
+                const productsList = <ItemList products={products} plantilla={'item'}/> 
                 setProductos(productsList)
             })
         }
         
     }, [categoria])
-    //[] cuando se renderiza
-    //[prop] cuando se renderiza y cuando se actualiza
+   
     return (
         <div className='row  contenedorProductos mb-4 mt-4'>
             {productos}
