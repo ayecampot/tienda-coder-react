@@ -1,11 +1,11 @@
 
 # Acerca del proyecto
-En este repositorio encontraras mi proyecto final realizado en el curso de React que curse en CoderHouse en principio del 2023, el mismo es un e-commerce con sus funciones básicas.
+En este repositorio encontraras mi proyecto final realizado en el curso de React que cursé en CoderHouse en principio del 2023, el mismo es un e-commerce con sus funciones básicas.
 
 ## Si queres clonar el proyecto y levantarlo de forma local hay que tener en cuenta los siguientes requerimientos:
 
 # Requerimientos
-tener instalado Node.js e tu pc
+tener instalado Node.js en tu pc
 Luego para poder correrlo de forma local es necesario instalar las dependencias que figuran en el package.json
 
 ### `npm install`
@@ -20,13 +20,12 @@ Usualmente esto abre automaticamente su navegador predeterminado y se inicializa
 localhost: 3000, puede ser que este puerto esté ocupado, en ese caso en la propia consola poner yes para abrir otro puerto.
 
 # Validación del formulario
-Para el mismo se utilizaron tantos atributo HTML como funciones de javascript.
+Para el mismo se utilizaron tantos atributo HTML como funciones de javascript. De esta forma el botón "enviar fomrulario" no funciona hasta que todos los datos estén correctos.
 
 # Deploy
 Fue realizando mediante Vercel vinculando el repositorio del proyecto.
 
 # Técnologías implementadas
-Al tratarse también de un proyecto de fin de curso de desarrollo Web, quise trabajar el proyecto y cada página en bloques de elementos, analizando su compatibilidad y fácil legibilidad
 
 · [React] (https://reactjs.org/) - JavaScript Framework.
 
